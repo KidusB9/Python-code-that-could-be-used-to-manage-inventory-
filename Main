@@ -1,0 +1,54 @@
+class Inventory:
+  def __init__(self):
+    # Create a dictionary to hold the inventory items and their quantities
+    self.items = {}
+
+  def add_item(self, item, quantity):
+    # Add an item to the inventory
+    if item in self.items:
+      # If the item is already in the inventory, update its quantity
+      self.items[item] += quantity
+    else:
+      # If the item is not in the inventory, add it with the specified quantity
+      self.items[item] = quantity
+
+  def remove_item(self, item, quantity):
+    # Remove an item from the inventory
+    if item in self.items:
+      # If the item is in the inventory, update its quantity
+      self.items[item] -= quantity
+
+      if self.items[item] <= 0:
+        # If the item quantity is 0 or less, remove it from the inventory
+        del self.items[item]
+
+  def check_inventory(self):
+    # Print the current inventory items and quantities
+    for item, quantity in self.items.items():
+      print(f'{item}: {quantity}')
+
+# Example usage
+inventory = Inventory()
+
+# Add some items to the inventory
+inventory.add_item('apple', 10)
+inventory.add_item('banana', 20)
+inventory.add_item('orange', 5)
+
+# Check the current inventory
+inventory.check_inventory()
+# Output:
+# apple: 10
+# banana: 20
+# orange: 5
+
+# Remove some items from the inventory
+inventory.remove_item('apple', 5)
+inventory.remove_item('banana', 10)
+
+# Check the updated inventory
+inventory.check_inventory()
+# Output:
+# apple: 5
+# banana: 10
+# orange: 5
